@@ -7,13 +7,15 @@ public class Maze {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(count(3,3));
-		System.out.println(path("",3,3));
-		System.out.println(pathDiagonal("",3,3));
-		System.out.println(count2(3,3));
+//		System.out.println(count(3,3));
+//		System.out.println(path("",3,3));
+//		System.out.println(pathDiagonal("",3,3));
+//		System.out.println(count2(3,3));
 		int[] obstacle = {2,3};
 		boolean[][] maze = new boolean[4][4];
 		pathRestrictions("",maze,0,0);
+		
+		System.out.println(allPath("",3,3));
 		
 	}
 	
@@ -40,8 +42,6 @@ public class Maze {
 	
 	static ArrayList<String> path(String p, int r, int c) {
 		if( r==1 && c==1) {
-			
-//			System.out.println(p);
 			return new ArrayList<String>(Arrays.asList(p));
 		}
 		ArrayList<String> ans1 = new ArrayList<String>();
@@ -51,8 +51,6 @@ public class Maze {
 		if(c>1) {
 			ans1.addAll(path(p+'R',r,c-1));
 		}
-//		path(p+'D',r-1,c);
-//		path(p+'R',r,c-1);
 		return ans1;
 	}
 	
@@ -70,8 +68,6 @@ public class Maze {
 		if(c>1) {
 			ans1.addAll(pathDiagonal(p+'R',r,c-1));
 		}
-//		path(p+'D',r-1,c);
-//		path(p+'R',r,c-1);
 		return ans1;
 	}
 	
@@ -94,8 +90,6 @@ public class Maze {
 				ans1.addAll(pathObstacle(p+'R',r,c-1,obstacle));
 			}
 		}
-//		path(p+'D',r-1,c);
-//		path(p+'R',r,c-1);
 		return ans1;
 	}
 
@@ -113,7 +107,25 @@ public class Maze {
 		if(c<maze.length-1) {
 			pathRestrictions(p+'R',maze,r,c+1);
 		}
-//		path(p+'D',r-1,c);
-//		path(p+'R',r,c-1);
+	}
+	
+	static ArrayList<String> allPath(String p, int r, int c) {
+		if( r==1 && c==1) {
+			return new ArrayList<String>(Arrays.asList(p));
+		}
+		ArrayList<String> ans1 = new ArrayList<String>();
+		if(r>1) {
+			ans1.addAll(allPath(p+'D',r-1,c));
+		}
+		if(c>1) {
+			ans1.addAll(allPath(p+'R',r,c-1));
+		}
+		if(r<3) {
+			ans1.addAll(allPath(p+'U',r+1,c));
+		}
+		if(c<3) {
+			ans1.addAll(allPath(p+'L',r,c+1));
+		}
+		return ans1;
 	}
 }
