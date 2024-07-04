@@ -121,14 +121,16 @@ public class LL {
 	public int getIndex(int val) {
 		Node temp = head;
 		int index=0;
+		int count=0;
 		while(temp != null) {
 			if(temp.value == val) {
-				return index;
+				System.out.println("Find");
+				index = count;
 			}
-			index++;
+			count++;
 			temp = temp.next;
 		}
-		return -1;
+		return index;
 	}
 
 	public void insertLast1(int val) {
@@ -165,6 +167,44 @@ public class LL {
 		size++;
 	}
 	
+	public  void removeNode(Node node) {
+		int in = getNodeIndex(node);
+//		System.out.println(in);
+		Node pNode = get(in-1);
+		pNode.next = node.next;
+	}
+	
+	public   int getNodeIndex1(Node node) {
+		Node temp = head;
+		int index=-1;
+		int count=0;
+		while(temp != null) {
+			if(temp.value == node.value) {
+				index = count;
+			}
+			count++;
+			temp = temp.next;
+		}
+		return index;
+	}
+	
+	public   int getNodeIndex(Node node) {
+		Node temp = node; // Start from the given node
+        int index = -1;
+        int count = 0;
+    
+        while (temp != null) {
+            if (temp.value == node.value) {
+                index = count;
+                // break; // Optional: Exit loop once found, if node data is unique
+            }
+            count++;
+            temp = temp.next;
+        }
+    
+        return index;
+	}
+	
 
 	public void display() {
 		Node temp = head;
@@ -188,4 +228,17 @@ public class LL {
 			this.next = next;
 		}
 	}
+	
+	 public  Node removeAllDuplicates() {
+	        // code here
+	        Node node = head;
+	        while(node != null) {
+	        	if(node.value == node.next.value) {
+	        		removeNode(node.next);
+	        	}
+	        	node = node.next;
+	        }
+	        return node;
+	        
+	 }
 }
