@@ -47,7 +47,7 @@ public class CLL {
 		if(head == null) {
 			head=node;
 			tail = node;
-			node.next = node;
+			node.next = node; //maintain circularity
 			size++;
 			return;
 		}
@@ -55,6 +55,31 @@ public class CLL {
 		head = node;
 		tail.next = head;
 		size++;
+	}
+	
+	public void deleteVal(int val) {
+		Node node = head;
+		if(head == null) {
+			System.err.println("linked list is empty");
+			return;
+		}
+		
+		if(head.val == val) {
+			head = head.next;
+			tail.next = head;
+			size--;
+			return;
+		}
+		
+		do {
+			if(node.next.val == val) {
+				node.next = node.next.next;
+				size--;
+				return;
+			}
+			node = node.next;
+		}while(node != head);
+		System.out.println("Value not found");
 	}
 
 	
@@ -68,7 +93,7 @@ public class CLL {
 		do {
 			System.out.print(node.val+" -> ");
 			node = node.next;
-		}while(node != head);
+		} while(node != head);
 		System.out.println("END");
 	}
 }

@@ -1,9 +1,14 @@
 package linkedlists;
 
+import java.util.HashMap;
+
 public class LL {
 
 	private Node head;
 	private Node tail;
+	
+	private LL next;
+	int val;
 
 	private int size;
 
@@ -241,4 +246,150 @@ public class LL {
 	        return node;
 	        
 	 }
+	 
+	 //insert using recursion
+	 
+	 public void insertRec(int val, int index) {
+		 head = insertRec(val, index, head);
+	 }
+	 
+	 private Node insertRec(int val, int index, Node node) {
+		 if(index==0) {
+			 Node temp = new Node(val, node);
+			 size++;
+			 return temp;
+		 }
+		 node.next = insertRec(val, index-1,node.next);
+//		 System.out.println(node.value);
+		 return node;
+	 }
+	 
+	 public static LL merge(LL first, LL second) {
+		 Node f = first.head;
+		 Node s = second.head;
+		 
+		 LL ans = new LL();
+		 
+		 while(f != null && s != null) {
+			 if(f.value < s.value) {
+				 ans.insertLast(f.value);
+				 f = f.next;
+			 }
+			 else {
+				 ans.insertLast(s.value);
+				 s = s.next;
+			 }
+		 }
+		 while(f != null) {
+			 ans.insertLast(f.value);
+			 f = f.next;
+		 }
+		 
+		 while(s != null) {
+			 ans.insertLast(s.value);
+			 s = s.next;
+		 }
+		 
+		 return ans;
+	 }
+	 
+	 public LL mergeTwoLists(LL f, LL s) {
+			LL dummyHead = new LL();
+			LL current = dummyHead;
+	        while(f != null && s != null){
+	            if(f.val < s.val ){
+	                current.next = f;
+	                f = f.next;
+	            }else{
+	                current.next = s;
+	                s = s.next;
+	            }
+	            current = current.next;
+	        }
+
+	        while(f != null){
+	            current.next = f;
+	            f = f.next;
+	            current  = current.next;
+	        }
+	        while(s != null){
+	            current.next = s;
+	            s = s.next;
+	            current  = current.next;
+	        }
+
+	        return dummyHead.next;
+	    }
+	 
+	 // has cycle or not
+	 	public boolean hasCycle(Node head) {
+	        if(head == null) return false;
+	        Node slow_p = head;
+	        Node fast_p = head;
+
+	        while(slow_p != null && fast_p != null && fast_p.next != null) {
+	            slow_p = slow_p.next;
+	            fast_p = fast_p.next.next;
+	            if(slow_p == fast_p){
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
+	 	
+	 	public int lengthCycle(Node head) {
+	        if(head == null) return 0;
+	        Node slow_p = head;
+	        Node fast_p = head;
+
+	        while(slow_p != null && fast_p != null && fast_p.next != null) {
+	            slow_p = slow_p.next;
+	            fast_p = fast_p.next.next;
+	            if(slow_p == fast_p){
+	                //calculate the length
+	            	Node temp = slow_p;
+	            	int length=0;
+	            	do {
+	            		length++;
+	            		temp=temp.next;
+	            	}while(temp != slow_p);
+	            	return length;
+	            }
+	        }
+	        return 0;
+	    }
+	 	
+	 	public LL detectCycle(LL head) {
+	        LL slow=head;
+	         LL fast=head;
+	         while (fast!=null && fast.next!=null){
+	             slow=slow.next;
+	             fast=fast.next.next;
+	             if (fast== slow){
+	                 slow= head;
+	                 while(slow != fast){
+	                 slow=slow.next;
+	                 fast=fast.next;
+	                 }
+	                 return slow;
+	             }
+	         }
+	         return null;
+	    
+	     }
+	 	
+	 	public static LL hasCycle(LL head) {
+	        HashMap <LL, Integer> map= new HashMap<>();
+
+	        LL temp = head;
+	        while(temp != null){
+	            if(map.containsKey(temp)){
+	                return temp;
+	            }else{
+	                map.put(temp,1);
+	                temp = temp.next;
+	            }
+	        }
+	        return null;
+	    }
 }

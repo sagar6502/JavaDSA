@@ -10,6 +10,8 @@ public class Main {
 		list.insertFirst(7);
 		list.insertLast(9);
 		list.display();
+		list.insertRec(20, 4);
+		list.display();
 		list.delLast1();
 		list.insertLast1(99);
 		list.delFirst();
@@ -40,6 +42,7 @@ public class Main {
 //		list.display();
  * 
  */
+	/*
 		CLL list = new CLL();
 		list.insert(10);
 		list.insert(20);
@@ -47,5 +50,24 @@ public class Main {
 		list.insert(39);
 		list.insertFirst(33);
 		list.display();
+		list.deleteVal(39);
+		list.display();
+		*/
+		
+		LL mm = new LL();
+		mm.insertLast(10);
+		mm.insertLast(20);
+		mm.insertLast(30);
+		mm.insertLast(39);
+		
+		LL mm1 = new LL();
+		mm1.insertLast(1);
+		mm1.insertLast(23);
+		mm1.insertLast(49);
+		mm1.insertLast(50);
+		
+		LL mm2 = LL.merge(mm, mm1);
+		mm2.display();
+		
 	}
 }
