@@ -3,7 +3,7 @@ package linkedlists;
 public class Main {
 	public static void main(String[] args) {
 		
-		/*
+		
 		LL list = new LL();
 		list.insertFirst(3);
 		list.insertFirst(1);
@@ -19,8 +19,10 @@ public class Main {
 		list.display();
 		list.deleteAtIndex(1);
 		list.display();
-		System.out.println(list.getIndex(100));
-*/
+		list.BubbleSort();
+		list.display();
+//		System.out.println(list.getIndex(100));
+
 		/*
 		LL list = new LL();
 		list.insertFirst(53);
@@ -54,6 +56,7 @@ public class Main {
 		list.display();
 		*/
 		
+		/*
 		LL mm = new LL();
 		mm.insertLast(10);
 		mm.insertLast(20);
@@ -68,6 +71,7 @@ public class Main {
 		
 		LL mm2 = LL.merge(mm, mm1);
 		mm2.display();
-		
+		mm2.size;
+		*/
 	}
 }

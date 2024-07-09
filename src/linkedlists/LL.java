@@ -4,13 +4,13 @@ import java.util.HashMap;
 
 public class LL {
 
-	private Node head;
+	Node head;
 	private Node tail;
 	
-	private LL next;
+	LL next;
 	int val;
 
-	private int size;
+	int size;
 
 	public LL() {
 		this.size = 0;
@@ -221,8 +221,8 @@ public class LL {
 	}
 
 	private class Node {
-		private int value;
-		private Node next;
+		int value;
+		Node next;
 
 		public Node(int value) {
 			this.value = value;
@@ -392,4 +392,95 @@ public class LL {
 	        }
 	        return null;
 	    }
+	 	
+	 	public static int cycleLength(LL head) {
+	 		int length=0;
+	 		LL slow = head;
+	 		LL  fast = head;
+	 		while(fast != null & fast.next != null) {
+	 			slow = slow.next;
+	 			fast = fast.next.next;
+	 			if(slow == fast) {
+	 				do {
+	 					length++;
+	 					slow = slow.next;
+	 				}while(slow != fast);
+	 				break;
+	 			}
+	 		}
+	 		return length;
+	 	}
+	 	
+	 	public static LL detectCyclePoint(LL head) {
+	 		LL first = head;
+	 		LL second = head;
+	 		int length = cycleLength(head);
+	 		while(length>0) {
+	 			second = second.next;
+	 			length--;
+	 		}
+	 		
+	 		// keep moving  both forward and they will meet at cycle start
+	 		while(first != second) {
+	 			first = first.next;
+	 			second = second.next;
+	 		}
+	 		
+	 		return second;
+	 		
+	 	}
+	 	
+	 	private static LL findMiddleNode(LL head) {
+	 		if(head == null) return head;
+
+	 		LL slow = head;
+	 		LL fast = head;
+	        
+	        while(fast != null && fast.next != null) {
+	            slow = slow.next;
+	            fast = fast.next.next;
+	        }
+
+	        return slow;
+	 	}
+	 	
+	 	private void bubbleSort(int row, int col) {
+			if(row == 0) {
+				return;
+			}
+			
+			if(col < row) {
+				Node first = get(col);
+				Node second = get(col + 1);
+				
+				if(first.value > second.value) {
+					//swap
+					if(first == head) {
+						head = second;
+						first.next = second.next;
+						second.next = first;
+					} else if (second == tail) {
+						Node prev = get(col-1);
+						prev.next = second;
+						tail = first;
+						first.next = null;
+						second.next = tail;
+					} else {
+						Node prev = get(col-1);
+						prev.next = second;
+						first.next = second.next;
+						second.next = first;
+					}
+				}
+				bubbleSort(row,col+1);
+			}
+			else {
+				bubbleSort(row-1,0);
+			}
+		}
+		
+		public void BubbleSort() {
+			bubbleSort(size-1, 0);
+		}
+	 	
 }
