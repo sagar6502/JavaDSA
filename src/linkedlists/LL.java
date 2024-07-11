@@ -2,6 +2,8 @@ package linkedlists;
 
 import java.util.HashMap;
 
+import linkedlists.RemoveDuplicates.ListNode;
+
 public class LL {
 
 	Node head;
@@ -478,9 +480,181 @@ public class LL {
 				bubbleSort(row-1,0);
 			}
 		}
+	 	
+	 	// recursion reverse
+	 	
+	 	private void reverse(Node node) {
+	 		if(node == tail) {
+	 			head = tail;
+	 			return;
+	 		}
+	 		reverse(node.next);
+	 		
+	 		tail.next = node;
+	 		tail = node;
+	 		tail.next = null;
+	 	}
 		
 		public void BubbleSort() {
 			bubbleSort(size-1, 0);
 		}
+		
+		// in place reversal of linked list
+		// https://leetcode.com/problems/reverse-linked-list/
+		public LL reverseList(LL head) {
+			if(size < 2) {
+				return head;
+			}
+			LL prev = null;
+			LL pres = head;
+			
+			
+			while(pres != null) {
+				LL pNext = pres.next;
+				pres.next = prev;
+				prev = pres;
+				pres = pNext;
+			}
+			return prev;
+ 			
+		}
+		
+		// reverse a part of linked list
+		// https://leetcode.com/problems/reverse-linked-list-ii/
+		public LL reverseLinkedList(LL head, int left, int right) {
+			if(left==right) {
+				return head;
+			}
+			
+			// skip the first left-1 nodes
+			LL current = head;
+			LL prev = null;
+			for(int i=0;i<left-1 && current != null;i++) {
+				prev = current;
+				current = current.next;
+			}
+			
+			LL last = prev;
+			LL newEnd = current;
+			
+			// reverse between left and right
+			// right-left+1: number of elements to be reversed
+			for(int i=0; i< right-left+1 && current != null;i++) {
+				
+					LL pNext = current.next;
+					current.next = prev;
+					prev = current;
+					current = pNext;
+			}
+			
+			if(last != null) {
+				last.next = prev;
+			}
+			else {
+				head = prev;
+			}
+			
+			newEnd = prev;
+			
+			return head;
+		}
+		
+		// palindrome the linkedList
+		// https://leetcode.com/problems/palindrome-linked-list/
+		
+		public boolean isPalindrome(LL head) {
+	        LL mid = findMiddleNode(head);
+	        LL headSecond = reverseList(mid);
+	        LL reReverseHead = headSecond;
+	        
+	        //compare both the halves
+	        while(head != null && headSecond != null) {
+	        	if(head.val != headSecond.val) {
+	        		break;
+	        	}
+	        	head = head.next;
+	        	headSecond = headSecond.next;
+	        }
+	        
+	        reverseList(reReverseHead);
+	        
+	        return head == null || headSecond == null;
+	    }
+		
+		// RE-ORDER LINKED-LIST
+		// https://leetcode.com/problems/reorder-list/
+		
+		public void reorderList(LL head) {
+	        if(head ==  null || head.next == null) {
+	        	return;
+	        }
+	        
+	        LL mid = findMiddleNode(head);
+	        LL headSecond = reverseList(mid);
+	        
+	        LL headFirst = head;
+	        
+	        while(headFirst != null && headSecond != null) {
+	        	LL temp = headFirst.next;
+	        	headFirst.next = headSecond;
+	        	headFirst = temp;
+	        	
+	        	temp = headSecond.next;
+	        	headSecond.next = headFirst;
+	        	headSecond = temp;
+	        }
+	        
+	        // next of tail to null
+	        if(headFirst != null) {
+	        	headFirst.next = null;
+	        }
+	    }
+		
+		// reverse in K-group 
+		// https://leetcode.com/problems/reverse-nodes-in-k-group/
+		// also reversing the <k end items 
+		public LL reverseKGroup(LL head, int k) {
+			if( k <= 1 || head == null){
+	            return head;
+	        }
+			
+			LL current = head;
+			LL prev = null;
+			int repeat = size/k;
+			while(size > 0) {
+				
+				LL last = prev;
+				LL newEnd = current;
+				
+				LL pNext = current.next;
+				// reverse between left and right
+				// right-left+1: number of elements to be reversed
+				for(int i=0; i < k && current != null;i++) {
+						current.next = prev;
+						prev = current;
+						current = pNext;
+						if(pNext != null) {
+							pNext.next = null;
+						}
+				}
+				
+				if(last != null) {
+					last.next = prev;
+				}
+				else {
+					head = prev;
+				}
+				
+				newEnd.next = current;
+				
+				if(current != null) break;
+				
+				prev = newEnd;
+				size--;
+				
+			}
+			
+	        return head;
+	    }
 	 	
 }
