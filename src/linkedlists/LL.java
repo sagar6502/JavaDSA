@@ -656,5 +656,125 @@ public class LL {
 			
 	        return head;
 	    }
+		
+		
+		// reverse alternate nodes in K-group 
+		// https://leetcode.com/problems/reverse-nodes-in-k-group/
+		// also reversing the <k end items 
+		public LL reverseAlternateKGroup(LL head, int k) {
+			if( k <= 1 || head == null){
+	            return head;
+	        }
+			
+			LL current = head;
+			LL prev = null;
+			while(true) {
+				
+				LL last = prev;
+				LL newEnd = current;
+				
+				LL pNext = current.next;
+				// reverse between left and right
+				// right-left+1: number of elements to be reversed
+				for(int i=0; i < k && current != null;i++) {
+						current.next = prev;
+						prev = current;
+						current = pNext;
+						if(pNext != null) {
+							pNext.next = null;
+						}
+				}
+				
+				if(last != null) {
+					last.next = prev;
+				}
+				else {
+					head = prev;
+				}
+				
+				newEnd.next = current;
+				
+				// skip the k nodes
+				for(int i=0; i<k && current != null ; i++) {
+					prev= current;
+					current = current.next;
+				}
+				
+				if(current != null) break;
+				
+				prev = newEnd;
+				
+			}
+			
+	        return head;
+	    }
+		
+		// rotate-right linked list k-times
+		// https://leetcode.com/problems/rotate-list/
+	
+		public ListNode rotateRight(ListNode head, int k) {
+	        if(k <= 0 || head == null){
+	            return head;
+	        }
+
+	        // System.out.println(size(head));
+	        int length = size;
+	        int rotate = k%length;
+	        System.out.println(rotate);
+	        if(rotate==0){
+	            return head;
+	        }
+
+	        ListNode curr = head;
+	        while(curr.next != null){
+	            curr = curr.next;
+	        }
+	        curr.next = head;
+
+	        ListNode temp1 = head;
+	        // int rotate = temp1.next.next == head? k-1:k;
+	        
+	        for(int i=0; i < length-rotate-1;i++){
+	                temp1 = temp1.next;
+	        }
+	        head = temp1.next;
+	        temp1.next = null;
+	        
+	        return head;
+
+	    }
+		
+		//rotate left
+		
+		public ListNode rotateLeft(ListNode head, int k) {
+	        if(k <= 0 || head == null){
+	            return head;
+	        }
+
+	        ListNode curr1 = head;
+	        int size = 1;
+	        while(curr1.next != null){
+	            size++;
+	            curr1 = curr1.next;
+	        }
+	        int rotate = k%size;
+	        // System.out.println(rotate);
+	        if(rotate==0){
+	            return head;
+	        }
+	       
+	        curr1.next = head;
+
+	        ListNode temp1 = head;
+	        
+	        for(int i=0; i < rotate-1;i++){
+	                temp1 = temp1.next;
+	        }
+	        head = temp1.next;
+	        temp1.next = null;
+	        
+	        return head;
+
+	    }
 	 	
 }
