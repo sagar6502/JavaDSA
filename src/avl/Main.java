@@ -7,7 +7,7 @@ public class Main {
 		for(int i=0; i<10000; i++) {
 			tree.insert(i);
 		}
-		tree.display();
+//		tree.display();
 		System.out.println(tree.height());
 	}
 }
