@@ -10,9 +10,17 @@ public class Main {
 		int[] nums1 = {15,10,7,12,20,17,22,4,9,11,13,16,18,21,24};
 		int[] sortedAray = {1,2,3,4,5,6,7,8,9};
 		int[] num2 = {2};
+		
+		int[] check = {12, 1, 2, 3, 0, 11, 4};
+		
+		int[] check2 = {1, 2, 3, 4, 5};
 //		System.out.println(Arrays.toString(Arrays.copyOfRange(nums, 0, 2)));
 //		bst.populateSortedArray(sortedAray,0,sortedAray.length);
-		bst.populateMultiple(nums1);
+		
+		bst.populateMultiple(check);
+		
+		System.out.println("no. of left nodes:: "+bst.countLeftNodes());
+//		bst.display();
 //		bst.insert(15);
 //		bst.insert(10);
 //		bst.insert(7);
@@ -24,8 +32,8 @@ public class Main {
 //		bst.displaypOT();
 //		bst.displayPOT();
 //		bst.displayLOT();
-		bst.levelOrderTraversalArr();
-		System.out.println(bst.findHeightOfTree());
+//		bst.levelOrderTraversalArr();
+//		System.out.println(bst.findHeightOfTree());
 //		System.out.println(bst.countNodes());
 //		System.out.println(bst.height());
 //		System.out.println(bst.balanced());

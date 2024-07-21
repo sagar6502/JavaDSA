@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class BinarySearchTree {
 	public class Node {
 		private int value;
-		private Node left;
-		private Node right;
+		 Node left;
+		Node right;
 		private int height;
 		
 		public Node(int value) {
@@ -254,4 +254,33 @@ public class BinarySearchTree {
 			
 			
 		}
+		
+		public int countLeftNodes() {
+			return countNumberOfLeftNodes(root);
+		}
+		
+		private int countNumberOfLeftNodes(Node node) {
+			Node searchnode = findNode(node,11);
+			System.out.println("searchNode :: "+searchnode.value);
+			return searchnode == null ? 0:countNodes(searchnode.left)-1;
+		}
+		
+		private Node findNode(Node node, int val) {
+			if(node == null) {
+				return node;
+			}
+			if(node.value == val) {
+				System.out.println("found :: "+node.value);
+				return node;
+			}
+			
+			else if(node.value<val) {
+				return findNode(node.right,val);
+			}else {
+				return findNode(node.left,val);
+			}
+			
+//			return node;
+		}
+		
 }
