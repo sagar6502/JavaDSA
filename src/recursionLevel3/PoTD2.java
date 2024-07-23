@@ -25,6 +25,7 @@ public class PoTD2 {
 //	 		    if(ans.contains(0)) {
 //	 				return 0;
 //	 			}
+				System.out.println(ans);
 				prod = Math.max(prod, findProd(ans));
 			}
 			
@@ -60,7 +61,7 @@ public class PoTD2 {
 			
 			for(int num: arr) {
 				int n = outer.size();
-//				System.out.println(n);
+				System.out.println(n);
 				for(int i=0;i<n;i++) {
 //					System.out.println("outer.get("+i+") : "+outer.get(i));
 					List<Integer> inner = new ArrayList<>(outer.get(i));

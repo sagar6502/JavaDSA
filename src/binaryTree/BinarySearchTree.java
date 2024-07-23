@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class BinarySearchTree {
 	public class Node {
 		private int value;
-		 Node left;
-		Node right;
+		 public Node left;
+		public Node right;
 		private int height;
 		
 		public Node(int value) {
