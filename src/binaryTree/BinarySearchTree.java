@@ -86,12 +86,12 @@ public class BinarySearchTree {
 	}
 	
 	public void populateSortedArray(int[] nums,int start, int end) {
-		if(start >= end || nums.length == 0) {
+		if(start > end ) {
 			return;
 		}
 		int mid = start+(end-start)/2;
 		insert(nums[mid]);
-		populateSortedArray(nums,start,mid);
+		populateSortedArray(nums,start,mid-1);
 		populateSortedArray(nums,mid+1,end);
 	}
 	
