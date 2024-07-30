@@ -14,6 +14,7 @@ public class CheckIfPathExists {
 	List<String> ans = new ArrayList<>();
     public List<String> binaryTreePaths(Node root) {
         helper(root, new StringBuilder());
+        ans.containsAll(ans);
         return ans;
     }
 
