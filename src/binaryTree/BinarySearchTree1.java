@@ -5,8 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-//import javax.swing.tree.Node;
-
 public class BinarySearchTree1 {
 	
 	private Node root;
