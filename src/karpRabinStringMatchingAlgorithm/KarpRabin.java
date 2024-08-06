@@ -17,7 +17,7 @@ public class KarpRabin {
 	private long updateHash(long prevHash, char oldChar, char newChar, int patternLength) {
 		long newHash = (prevHash-oldChar) / PRIME;
 		
-		newHash += newChar  * Math.pow(PRIME, (patternLength-1));
+		newHash += newChar * Math.pow(PRIME, (patternLength-1));
 		
 		return newHash;
 	}
