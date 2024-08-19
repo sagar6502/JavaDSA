@@ -1,4 +1,4 @@
-package countSort;
+package sortingAlgorithm;
 
 import java.util.Arrays;
 import java.util.HashMap;
