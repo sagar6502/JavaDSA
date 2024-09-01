@@ -1,5 +1,7 @@
 package introduction;
 
+import stringprograms.SingleTonClass;
+
 public class Main {
 	public static void main(String[] args) {
 		int[] numbers = new int[5];
@@ -16,6 +18,8 @@ public class Main {
 		Student students2 = new Student();
 		
 		System.out.println(students.rno);
+		SingleTonClass obj1 = SingleTonClass.getInstance();
+		SingleTonClass obj2 = SingleTonClass.getInstance();
 	}
 	
 	
