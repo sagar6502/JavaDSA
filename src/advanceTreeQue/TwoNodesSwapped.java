@@ -13,20 +13,21 @@ public class TwoNodesSwapped {
 	 */
 
 	public static void main(String[] args) {
-		
+
 	}
+
 	Node first;
 	Node second;
 	Node prev;
 
 	public void recoverTree(Node root) {
 		iot(root);
-		
+
 		// swap
 		int temp = first.getValue();
-		first.getValue() = second.getValue();
-		second.getValue() = temp;
-		
+		first.setValue(second.getValue()); // Set the value of first to the value of second
+		second.setValue(temp);
+
 	}
 
 	private void iot(Node node) {
@@ -35,17 +36,16 @@ public class TwoNodesSwapped {
 		}
 
 		iot(node.left);
-		
-		if(prev != null && prev.getValue() > node.getValue()) {
-			if(first == null) {
+
+		if (prev != null && prev.getValue() > node.getValue()) {
+			if (first == null) {
 				first = prev;
 			}
-			
+
 			second = node;
 		}
 		prev = node;
-		
-		
+
 		iot(node.right);
 	}
 
