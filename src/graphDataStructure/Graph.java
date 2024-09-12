@@ -1,6 +1,8 @@
 package graphDataStructure;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Graph {
 
@@ -51,6 +53,18 @@ public class Graph {
 		for (int i = 0; i < graph[2].size(); i++) {
 			System.out.println(graph[2].get(i).dst + " , " + graph[2].get(i).weight);
 		}
+		
+		System.out.println();
+		bfs(graph,v);
+		System.out.println();
+		boolean[] vis = new boolean[v];
+		
+		for(int i=0;i<v;i++) {
+			if(vis[i]==false) {
+				bfs1(graph,v,vis,i);
+			}
+		}
+		System.out.println();
 	}
 
 	// un-directed non-weighted graph
@@ -73,5 +87,63 @@ public class Graph {
 		graph[3].add(new Edge(3, 1, 0));
 		graph[3].add(new Edge(3, 2, -1));
 	}
+	
+	
+	// for connected components
+	public static void bfs(ArrayList<Edge> graph[], int V) {
+		if(graph.length == 0) {
+			return;
+		}
+		
+		Queue<Integer> q = new LinkedList<>();
+		
+		boolean[] visitArray = new boolean[V];
+		
+		q.add(0);
+		
+		while(!q.isEmpty()) {
+			
+			int curr = q.remove();
+			
+			if(!visitArray[curr]) {
+				System.out.print(curr+" ");
+				visitArray[curr] = true;
+				
+				for(int i=0; i<graph[curr].size();i++) {
+					Edge e = graph[curr].get(i);
+					q.add(e.dst);
+				}
+			}
+			
+		}
+	}
+	
+	// for disconnected components: where all the components are not connected
+	public static void bfs1(ArrayList<Edge> graph[], int V,boolean[] visitArray, int start) {
+		if(graph.length == 0) {
+			return;
+		}
+		
+		Queue<Integer> q = new LinkedList<>();
+		
+		q.add(start);
+		
+		while(!q.isEmpty()) {
+			
+			int curr = q.remove();
+			
+			if(!visitArray[curr]) {
+				System.out.print(curr+" ");
+				visitArray[curr] = true;
+				
+				for(int i=0; i<graph[curr].size();i++) {
+					Edge e = graph[curr].get(i);
+					q.add(e.dst);
+				}
+			}
+			
+		}
+	}
 
 }
+ 
