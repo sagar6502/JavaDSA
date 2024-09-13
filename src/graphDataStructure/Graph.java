@@ -162,7 +162,11 @@ public class Graph {
 		}
 		System.out.print(curr+" ");
 		vis[curr] = true;
-		dfs(graph,graph[curr].get(0).dst,vis);
+		for(int i=0; i<graph[curr].size();i++) {
+			Edge e = graph[curr].get(i);
+			dfs(graph,e.dst,vis);
+		}
+		
 	}
 
 }
