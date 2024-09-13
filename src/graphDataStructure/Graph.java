@@ -1,8 +1,8 @@
 package graphDataStructure;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Graph {
@@ -44,12 +44,15 @@ public class Graph {
 	 */
 
 	public static void main(String[] args) {
-		int v = 4;
+		int v = 7;
 
 		ArrayList<Edge> graph[] = new ArrayList[v];
 
 		createGraph(graph);
+		
+		findAllPath(graph,0,3);
 
+		/*
 		// print the neighbors of 2
 		for (int i = 0; i < graph[2].size(); i++) {
 			System.out.println(graph[2].get(i).dst + " , " + graph[2].get(i).weight);
@@ -75,6 +78,7 @@ public class Graph {
 				dfs(graph,i,visited);
 			}
 		}
+		*/
 	}
 
 	// un-directed non-weighted graph
@@ -85,17 +89,41 @@ public class Graph {
 		}
 
 		// value initialization
+//		graph[0].add(new Edge(0, 2, 2));
+//
+//		graph[1].add(new Edge(1, 2, 10));
+//		graph[1].add(new Edge(1, 3, 0));
+//
+//		graph[2].add(new Edge(2, 0, 2));
+//		graph[2].add(new Edge(2, 1, 10));
+//		graph[2].add(new Edge(2, 3, -1));
+//
+//		graph[3].add(new Edge(3, 1, 0));
+//		graph[3].add(new Edge(3, 2, -1));
+		
+		graph[0].add(new Edge(0, 1, 2));
 		graph[0].add(new Edge(0, 2, 2));
-
-		graph[1].add(new Edge(1, 2, 10));
-		graph[1].add(new Edge(1, 3, 0));
-
+		
+		graph[1].add(new Edge(1, 3, 10));
+		graph[1].add(new Edge(1, 0, 2));
+		
 		graph[2].add(new Edge(2, 0, 2));
-		graph[2].add(new Edge(2, 1, 10));
-		graph[2].add(new Edge(2, 3, -1));
-
+		graph[2].add(new Edge(2, 4, 4));
+		
 		graph[3].add(new Edge(3, 1, 0));
-		graph[3].add(new Edge(3, 2, -1));
+		graph[3].add(new Edge(3, 4, 7));
+		graph[3].add(new Edge(3, 5, 2));
+		
+		graph[4].add(new Edge(4, 5, 2));
+		graph[4].add(new Edge(4, 2, 4));
+		graph[4].add(new Edge(4, 3, 7));
+		
+		graph[5].add(new Edge(5, 3, 2));
+		graph[5].add(new Edge(5, 4, 2));
+		graph[5].add(new Edge(5, 6, 4));
+		
+		graph[6].add(new Edge(6, 5, 4));
+		
 	}
 
 	// for connected components
@@ -165,6 +193,31 @@ public class Graph {
 		for(int i=0; i<graph[curr].size();i++) {
 			Edge e = graph[curr].get(i);
 			dfs(graph,e.dst,vis);
+		}
+		
+	}
+	
+	List<List<Integer>> ans = new ArrayList<>(); 
+	static void findAllPath(ArrayList<Edge> graph[], int src, int dst) {
+		boolean[] vis = new boolean[graph.length];
+		dfs1(graph,src,dst,vis,"");
+	}
+	
+	public static void dfs1(ArrayList<Edge> graph[], int curr, int dst, boolean[] vis,String path) {
+		if(curr == dst ) {
+			path += Integer.toString(curr);
+			System.out.print(path+" ");
+			return;
+		}
+		
+		for(int i=0; i<graph[curr].size();i++) {
+				if(!vis[curr]) {
+					vis[curr] = true;
+					Edge e = graph[curr].get(i);
+					dfs1(graph,e.dst,dst,vis,path+Integer.toString(curr));
+					vis[curr] = false;
+				}
+	
 		}
 		
 	}
