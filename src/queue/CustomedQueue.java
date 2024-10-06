@@ -1,7 +1,5 @@
 package queue;
 
-import stack.StackException;
-
 public class CustomedQueue {
 	protected int[] data;
 	private static final int DEFAULT_SIZE = 10;

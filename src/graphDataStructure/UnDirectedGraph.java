@@ -89,17 +89,20 @@ public class UnDirectedGraph {
 		}
 
 		// value initialization
-//		graph[0].add(new Edge(0, 2, 2));
-//
-//		graph[1].add(new Edge(1, 2, 10));
-//		graph[1].add(new Edge(1, 3, 0));
-//
-//		graph[2].add(new Edge(2, 0, 2));
-//		graph[2].add(new Edge(2, 1, 10));
-//		graph[2].add(new Edge(2, 3, -1));
-//
-//		graph[3].add(new Edge(3, 1, 0));
-//		graph[3].add(new Edge(3, 2, -1));
+		/*
+		graph[0].add(new Edge(0, 2, 2));
+
+		graph[1].add(new Edge(1, 2, 10));
+		graph[1].add(new Edge(1, 3, 0));
+
+		graph[2].add(new Edge(2, 0, 2));
+		graph[2].add(new Edge(2, 1, 10));
+		graph[2].add(new Edge(2, 3, -1));
+
+		graph[3].add(new Edge(3, 1, 0));
+		graph[3].add(new Edge(3, 2, -1));
+		*/
+		
 		
 		graph[0].add(new Edge(0, 1, 2));
 		graph[0].add(new Edge(0, 2, 2));
@@ -123,6 +126,8 @@ public class UnDirectedGraph {
 		graph[5].add(new Edge(5, 6, 4));
 		
 		graph[6].add(new Edge(6, 5, 4));
+		
+		
 		
 	}
 

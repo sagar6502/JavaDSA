@@ -1,7 +1,6 @@
 package graphDataStructure;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Stack;
 
 public class DirectedGraph {
@@ -73,7 +72,7 @@ public class DirectedGraph {
 		
 		graph[5].add(new Edge(5, 0));
 
-		graph[5].add(new Edge(3, 2));
+		graph[5].add(new Edge(5, 2));
 	}
 	
 	public static boolean isCycleDirected(ArrayList<Edge> graph[], boolean[] vis, int curr, boolean rec[]) {

@@ -1,7 +1,5 @@
 package stack;
 
-import java.util.Iterator;
-
 public class DynamicStack extends CustomedStack{
 	
 	public DynamicStack() {
