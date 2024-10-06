@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Graph {
+public class UnDirectedGraph {
 
 	/*
 	 * Graph is a non-linear data structure consisting of vertices and edges. The
@@ -203,6 +203,8 @@ public class Graph {
 		dfs1(graph,src,dst,vis,"");
 	}
 	
+	
+	// O ( v^v)
 	public static void dfs1(ArrayList<Edge> graph[], int curr, int dst, boolean[] vis,String path) {
 		if(curr == dst ) {
 			path += Integer.toString(curr);
