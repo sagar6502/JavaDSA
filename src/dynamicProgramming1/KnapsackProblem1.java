@@ -2,7 +2,7 @@ package dynamicProgramming1;
 
 import java.util.Arrays;
 
-public class KnapsackProblem {
+public class KnapsackProblem1 {
 	
 	static int[][] dp;
 	public static void main(String[] args) {
@@ -21,6 +21,8 @@ public class KnapsackProblem {
 		
 	}
 
+	
+	// top-bottom knapsack problem
 	private static int solveKnapSack(int[] wt, int[] val, int w, int n) {
 		// TODO Auto-generated method stub
 		if(w == 0 || n == 0) {
