@@ -1,15 +1,17 @@
 package dynamicProgramming1;
 
-public class SubsetProblem {
+public class EqualSumPartition {
 
-	static int[][] dp;
 	static int[][] dp1;
 
 	public static void main(String[] args) {
-		int[] arr = { 3, 34, 4, 12, 5, 2 };
-		int sum = 9;
+		int[] arr = { 1, 5, 11, 6 };
+		int sum = 0;
+		for (int i : arr) {
+			sum += i;
+		}
+
 		int n = arr.length;
-		dp = new int[n + 1][sum + 1];
 		dp1 = new int[n + 1][sum + 1];
 		for (int i = 0; i < sum + 1; i++) {
 			dp1[0][i] = -1;
@@ -21,9 +23,12 @@ public class SubsetProblem {
 
 		}
 
-		System.out.println(vsumBT(arr, n, sum) == 1);
+		if (sum % 2 != 0) {
+			System.out.println("Not possible of equal sum partition");
+		} else {
+			System.out.println(vsumBT(arr, n, sum / 2) == 1);
+		}
 
-		System.out.println(vsum(arr, n, sum));
 	}
 
 	// bottom-up approach
@@ -40,58 +45,6 @@ public class SubsetProblem {
 		}
 
 		return dp1[n][tar];
-	}
-
-	// top-bottom approach
-
-	/**
-	 * @param arr
-	 * @param n
-	 * @param tar
-	 * @return
-	 */
-	private static int vsumTB(int[] arr, int n, int tar) {
-
-		if (tar == 0) {
-			return 1;
-		}
-		if (n == 0) {
-			return -1;
-		}
-
-		if (dp[n][tar] != 0) {
-			return dp[n][tar];
-		}
-
-		if (arr[n - 1] > tar) {
-			dp[n][tar] = vsumTB(arr, n - 1, tar);
-			return dp[n][tar];
-		}
-
-		if (vsumTB(arr, n - 1, tar) == 1 || vsumTB(arr, n - 1, tar - arr[n - 1]) == 1) {
-			dp[n][tar] = 1;
-		}
-
-		return dp[n][tar];
-	}
-
-	// recursion
-	private static boolean vsum(int[] arr, int n, int tar) {
-
-		if (tar == 0) {
-			return true;
-		}
-
-		if (n == 0) {
-			return false;
-		}
-
-		if (arr[n - 1] > tar) {
-			return vsum(arr, n - 1, tar);
-		}
-
-		return vsum(arr, n - 1, tar) || vsum(arr, n - 1, tar - arr[n - 1]);
-
 	}
 
 	// space extra optimized

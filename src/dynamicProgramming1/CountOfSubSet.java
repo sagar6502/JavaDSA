@@ -1,18 +1,20 @@
 package dynamicProgramming1;
 
-public class SubsetProblem {
+import java.util.Arrays;
+
+public class CountOfSubSet {
 
 	static int[][] dp;
 	static int[][] dp1;
 
 	public static void main(String[] args) {
-		int[] arr = { 3, 34, 4, 12, 5, 2 };
-		int sum = 9;
+		int[] arr = {2,3,5,6,8,10 };
+		int sum = 10;
 		int n = arr.length;
 		dp = new int[n + 1][sum + 1];
 		dp1 = new int[n + 1][sum + 1];
 		for (int i = 0; i < sum + 1; i++) {
-			dp1[0][i] = -1;
+			dp1[0][i] = 0;
 		}
 
 		for (int i = 0; i < n + 1; i++) {
@@ -22,8 +24,19 @@ public class SubsetProblem {
 		}
 
 		System.out.println(vsumBT(arr, n, sum) == 1);
-
-		System.out.println(vsum(arr, n, sum));
+		for(int[] a:dp1) {
+			System.out.println(Arrays.toString(a));
+		}
+		
+		System.out.println(dp1[n][sum]);
+//		int count = 0;
+//		for(int i=0;i<n+1;i++) {
+//			if(dp1[i][sum] == 1) {
+//				count++;
+//			}
+//		}
+		
+//		System.out.println(count);
 	}
 
 	// bottom-up approach
@@ -33,8 +46,8 @@ public class SubsetProblem {
 			for (int j = 1; j < tar + 1; j++) {
 				if (arr[i - 1] > j) {
 					dp1[i][j] = dp1[i - 1][j];
-				} else if (dp1[i - 1][j] == 1 || dp1[i - 1][j - arr[i - 1]] == 1) {
-					dp1[i][j] = 1;
+				} else {
+					dp1[i][j] = dp1[i - 1][j] + dp1[i - 1][j - arr[i - 1]];
 				}
 			}
 		}
