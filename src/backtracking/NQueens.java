@@ -1,7 +1,5 @@
 package backtracking;
 
-import java.util.Arrays;
-
 public class NQueens {
 	public static void main(String[] args) {
 		int n=4;

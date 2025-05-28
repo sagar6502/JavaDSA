@@ -9,10 +9,7 @@ public class SubSet {
 		int[] arr = {1,2,3};
 		int[] arr1 = {1,2,2};
 		Arrays.sort(arr1);
-//		List<List<Integer>>  ans = subSet(arr);
-//		for(List<Integer> list:ans) {
-//			System.out.println(list);
-//		}
+
 		subSet(new ArrayList<Integer>(),arr,0);
 	}
 	

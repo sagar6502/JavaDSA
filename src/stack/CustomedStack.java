@@ -1,7 +1,5 @@
 package stack;
 
-import java.util.Arrays;
-
 public class CustomedStack {
 	protected int[] data;
 	private static final int DEFAULT_SIZE = 10;

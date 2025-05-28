@@ -16,6 +16,10 @@ public class BinarySearchTree {
 		public int getValue() {
 			return value;
 		}
+		
+		public void setValue(int value) {
+			this.value = value;
+		}
 	}
 	
 	private Node root;

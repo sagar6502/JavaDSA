@@ -1,7 +1,5 @@
 package mathsForDSA;
 
-import java.util.Arrays;
-
 public class SieveOfEratosthenes {
 	public static void main(String[] args) {
 		int startingNum = 20;

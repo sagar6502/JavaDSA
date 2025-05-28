@@ -1,7 +1,6 @@
 package lambdaFunctions;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 public class LambdaOperation {
 	public static void main(String[] args) {

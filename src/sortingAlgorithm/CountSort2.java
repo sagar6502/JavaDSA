@@ -1,7 +1,6 @@
 package sortingAlgorithm;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class CountSort2 {
 	public static void main(String[] args) {

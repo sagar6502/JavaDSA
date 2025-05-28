@@ -2,7 +2,6 @@ package recursionLevel4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Permutation {
 	public static void main(String[] args) {
